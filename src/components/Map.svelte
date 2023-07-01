@@ -1,7 +1,7 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
-    import { totalScore, data, currIframeURL } from '$lib/stores/store';
+    import { totalScore, totalGuessed, data, currIframeURL } from '$lib/stores/store';
     import { findDistance } from '$lib/utils';
 
     let leaflet,
@@ -12,6 +12,7 @@
         placeCoords=[],
         placeURL,
         shownPlaces=[],
+        currPlace=[],
         coords=[27.700001, 85.333336],
         polyCoords=[],
         polyLine,
@@ -25,7 +26,8 @@
         mapMarker,
         distance,
         score=100,
-        totScore;
+        totScore,
+        totGuessed=0;
 
     totalScore.subscribe(value => totScore=value);
     data.subscribe(value => placeData=value);
@@ -67,7 +69,7 @@
     }
     const handleGuessClick=()=>{
         distance=findDistance(placeCoords[0], placeCoords[1], coords[0], coords[1]).toFixed(2);
-        score=distance>1?Math.floor(2500-((distance*100)*Math.floor(distance*2.5))):Math.floor(2500-(distance*100));
+        score=distance>.75?Math.floor(100-((distance*10)*Math.floor(distance*2.5))):Math.floor(100-(distance*10));
         score=score>0?score:0;
 
         totalScore.update(value => value+score);
@@ -81,6 +83,13 @@
         // adding polyline
         polyCoords=[placeCoords,coords];
         polyLine=leaflet.polyline(polyCoords, {color: 'red'}).addTo(map);
+
+        totGuessed++;
+        if(totGuessed>shownPlaces.length) totGuessed=shownPlaces.length;
+        
+        totalGuessed.set(totGuessed);
+
+        // console.log(placeData)
     }
     const handleNextClick=()=>{
         coords=[27.700001, 85.333336]
@@ -92,7 +101,7 @@
         // removing polyline
         if(polyLine) polyLine.remove(map);
         changeMapSize('small');
-        getPlaceData()
+        getPlaceData();
     }
     const getPlaceData=()=>{
         if(placeData.length==shownPlaces.length) return;
@@ -114,6 +123,8 @@
             
             currIframeURL.set(indPlace.iframeURL);
         }
+
+        currPlace=indPlace;
     }
     getPlaceData();
     const handleResize=()=>{
@@ -146,6 +157,9 @@
             showGuess=false;
             showNext=false;
         }
+
+        // totGuessed=shownPlaces.length-1;
+        // totalGuessed.set(totGuessed);
     }
 </script>
 
@@ -170,8 +184,11 @@
 {/if}
 {#if distance && showNext}
     <div class="distance-score-txt">
-        <li><i><b>{distance} km</b></i> distance between the actual point and the guessed location.</li>
-        <li>Score received, <i><b>{score}</b></i>.</li>
+        {#if currPlace.name}
+            <li>Place: <i><b>{currPlace.name}</b></i></li>
+        {/if}
+        <li>Distance difference: <i><b>{distance} km</b></i></li>
+        <li>Points: <i><b>{score}</b></i>.</li>
     </div>
 {/if}
     

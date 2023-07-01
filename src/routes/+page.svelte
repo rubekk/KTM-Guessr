@@ -3,19 +3,22 @@
     import Share from "./../components/Share.svelte";
     import OnLoad from "../components/OnLoad.svelte";
     import Map from "./../components/Map.svelte";
+    import Audio from "../components/Audio.svelte";
     import What from "../components/What.svelte";
-    import { canShowShare, canShowWhat, totalScore, currIframeURL } from "$lib/stores/store";
+    import { canShowShare, canShowWhat, totalScore, totalGuessed, currIframeURL } from "$lib/stores/store";
 
     let showShare,
         showWhat,
         iframeURL,
         totScore,
+        totGuessed,
         loaded=false;
 
     canShowShare.subscribe(value => showShare=value);
     canShowWhat.subscribe(value => showWhat=value);
     currIframeURL.subscribe(value => iframeURL=value);
     totalScore.subscribe(value => totScore=value);
+    totalGuessed.subscribe(value => totGuessed=value);
         
     const setShareToTrue=()=> canShowShare.set(true);
     const setWhat=()=>{
@@ -51,8 +54,11 @@
     </div>
     <div class="container">
         <iframe src="{iframeURL}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="audio">
+            <Audio />
+        </div>
         <div class="score">
-            <span class="score-txt">total score:</span><span class="score-num">{totScore}</span>
+            <span class="score-txt">total score:</span><span class="score-num">{totScore} ({totGuessed})</span>
         </div>
         <div class="map">
             <Map />
@@ -124,21 +130,25 @@
         overflow: hidden;
         z-index: -1;
     }
+    .audio{
+        position: absolute;
+        top: 6rem;
+        left: 1rem;
+    }
     .score{
+        width: max-content;
         height: 40px;
         padding: .5rem 1rem;
-        font-size: 1.1rem;
         background-color: rgb(253, 136, 136);
         color: #fff;
         border: 2px solid #81adfd;
         border-radius: 3px;
-        position: absolute;
-    }
-    .score{
-        width: max-content;
         display: flex;
         align-items: center;
+        position: absolute;
         top: 6rem;
+    }
+    .score{
         right: 1rem;
     }
     .score-txt{

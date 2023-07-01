@@ -6,7 +6,7 @@
 
 <div class="container">
     <p>Guess places of Kathmandu valley with 360 view.</p>
-    <p class="submit-txt"><a href="/" target="_blank">submit a place</a></p>
+    <p class="submit-txt"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdQOdmX5gfQDUbwy-6_bYT9Zlb27CGDvPPIRQThA_v-69XZBw/viewform?usp=sf_link" target="_blank">submit a place</a></p>
     <p class="created-info">made by <a href="https://rubekmaharjan.netlify.app" target="_blank">rubek</a></p>
     <i on:click={setWhatToFalse} class="fa-solid fa-times"></i>
 </div>
