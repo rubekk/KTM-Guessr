@@ -2,24 +2,17 @@
     import ktm from "$lib/imgs/ktm.png";
     import { fade } from "svelte/transition";
 
-    let runAnimTitle=false,
-        runAnimImg=false;
+    let runAnimTitle=false;
 
     setTimeout(()=>{
         runAnimTitle=true
     },100)
-    setTimeout(()=>{
-        runAnimImg=true
-    },1000)
 </script>
 
 {#if runAnimTitle}
 <div transition:fade="{{ duration: 1000 }}" class="title">
     <span class="ktm">KTM</span><span class="guessr">GUESSR</span>
 </div>
-{/if}
-{#if runAnimImg}
-<img transition:fade="{{ duration: 1000 }}" src={ktm} alt="">
 {/if}
 
 <style>
