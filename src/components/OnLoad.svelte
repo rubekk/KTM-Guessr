@@ -1,5 +1,4 @@
 <script>
-    import ktm from "$lib/imgs/ktm.png";
     import { fade } from "svelte/transition";
 
     let runAnimTitle=false;
