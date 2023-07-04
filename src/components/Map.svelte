@@ -4,6 +4,7 @@
     import { totalScore, totalGuessed, data, currIframeURL } from '$lib/stores/store';
     import { findDistance } from '$lib/utils';
     import getScore from "$lib/getScore.js";
+    import markerIcon from "$lib/imgs/marker-icon.png";
 
     let leaflet,
         mapElem,
@@ -38,7 +39,13 @@
 
         leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        if(markerOn) mapMarker=leaflet.marker(coords).addTo(map);
+        const myIcon = L.icon({
+            iconUrl: markerIcon,
+            iconSize:     [27, 45], 
+            iconAnchor:   [15, 45]
+        });
+
+        if(markerOn) mapMarker=leaflet.marker(coords, {icon: myIcon}).addTo(map);
 
         map.on('click', e=>{
             if(!canMark) return;
@@ -49,7 +56,7 @@
             if(mapMarker) map.removeLayer(mapMarker);
             markerOn=true;
             coords=[map.mouseEventToLatLng(e.originalEvent).lat, map.mouseEventToLatLng(e.originalEvent).lng];
-            mapMarker=leaflet.marker(coords).addTo(map);
+            mapMarker=leaflet.marker(coords, {icon: myIcon}).addTo(map);
         })
     }
     const changeMapSize=size=>{
@@ -79,6 +86,10 @@
         guessed=true;
         showNext=true;
         canMark=false;
+
+        let myIcon = leaflet.icon({
+            iconUrl: markerIcon
+        })
 
         mapMarker=leaflet.marker(placeCoords).addTo(map)
         // adding polyline
