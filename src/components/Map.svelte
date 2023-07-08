@@ -102,8 +102,6 @@
         if(totGuessed>shownPlaces.length) totGuessed=shownPlaces.length;
         
         totalGuessed.set(totGuessed);
-
-        // console.log(placeData)
     }
     const handleNextClick=()=>{
         coords=[27.700001, 85.333336]
@@ -119,28 +117,23 @@
     }
     const getPlaceData=()=>{
         if(placeData.length==shownPlaces.length) return;
-        let l=placeData.length;
-        let indPlace=placeData[Math.floor(Math.random()*l)];
-        let includes=false;
 
-        shownPlaces.forEach(elem=>{
-            if(elem.name==indPlace.name) includes=true;
-        })
-        if(includes) getPlaceData();
-        else{
-            shownPlaces.push(indPlace);
-            shownPlaces=[...shownPlaces];
+        let indPlace=placeData[Math.floor(Math.random()*placeData.length)];
 
-            placeName=indPlace.name;
-            placeCoords=indPlace.coords;
-            placeURL=indPlace.iframeURL;  
-            
-            currIframeURL.set(indPlace.iframeURL);
+        if(shownPlaces.includes(indPlace)) {
+            getPlaceData();
+            return;
         }
 
-        currPlace=indPlace;
+        shownPlaces.push(indPlace);
+        shownPlaces=[...shownPlaces];
 
-        console.log("p: ",placeData,"s: ",shownPlaces);
+        placeName=indPlace.name;
+        placeCoords=indPlace.coords;
+        placeURL=indPlace.iframeURL;  
+        
+        currIframeURL.set(indPlace.iframeURL);
+        currPlace=indPlace;
     }
     getPlaceData();
     const handleResize=()=>{
@@ -173,9 +166,6 @@
             showGuess=false;
             showNext=false;
         }
-
-        // totGuessed=shownPlaces.length-1;
-        // totalGuessed.set(totGuessed);
     }
 </script>
 
