@@ -39,7 +39,7 @@
 
         leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        const myIcon = L.icon({
+        const myIcon = leaflet.icon({
             iconUrl: markerIcon,
             iconSize:     [27, 45], 
             iconAnchor:   [15, 45]
@@ -87,11 +87,13 @@
         showNext=true;
         canMark=false;
 
-        let myIcon = leaflet.icon({
-            iconUrl: markerIcon
-        })
+        const myIcon = leaflet.icon({
+            iconUrl: markerIcon,
+            iconSize:     [27, 45], 
+            iconAnchor:   [15, 45]
+        });
 
-        mapMarker=leaflet.marker(placeCoords).addTo(map)
+        mapMarker=leaflet.marker(placeCoords, {icon: myIcon}).addTo(map)
         // adding polyline
         polyCoords=[placeCoords,coords];
         polyLine=leaflet.polyline(polyCoords, {color: 'red'}).addTo(map);
