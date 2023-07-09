@@ -4,6 +4,7 @@
     import OnLoad from "../components/OnLoad.svelte";
     import Map from "./../components/Map.svelte";
     import Audio from "../components/Audio.svelte";
+    import Like from "../components/Like.svelte";
     import What from "../components/What.svelte";
     import { canShowShare, canShowWhat, totalScore, totalGuessed, currIframeURL } from "$lib/stores/store";
 
@@ -62,6 +63,9 @@
         </div>
         <div class="map">
             <Map />
+        </div>
+        <div class="like">
+            <Like />
         </div>
         <div class="info">
             <i on:click={setWhat} class="fa-solid fa-question"></i>
@@ -158,6 +162,11 @@
         position: absolute;
         bottom: 1rem;
         left: 1rem;
+    }
+    .like{
+        position: absolute;
+        bottom: .75rem;
+        right: 4rem;
     }
     .info{
         position: absolute;

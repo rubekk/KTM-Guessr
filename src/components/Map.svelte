@@ -1,7 +1,7 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
-    import { totalScore, totalGuessed, data, currIframeURL } from '$lib/stores/store';
+    import { totalScore, totalGuessed, data, currIframeURL, currentPlace } from '$lib/stores/store';
     import { findDistance } from '$lib/utils';
     import getScore from "$lib/getScore.js";
     import markerIcon from "$lib/imgs/marker-icon.png";
@@ -134,6 +134,8 @@
         
         currIframeURL.set(indPlace.iframeURL);
         currPlace=indPlace;
+
+        currentPlace.set(indPlace);
     }
     getPlaceData();
     const handleResize=()=>{

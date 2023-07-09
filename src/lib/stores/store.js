@@ -8,6 +8,8 @@ export let totalScore=writable(0);
 
 export let totalGuessed=writable(0);
 
+export let currentPlace=writable({});
+
 export const data=writable([
     {
         name: "Lalitpur Metropolitan City",
