@@ -1,5 +1,4 @@
 <script>
-    import { isGameCompleted } from "$lib/stores/store";
 </script>
 
 <div class="container">
@@ -14,7 +13,6 @@
 <style>
     .container{
         padding: 1rem;
-        /* background-color: rgba(0,0,0,.5); */
         background-color: rgb(8, 95, 95);
         color: #fff;
     }

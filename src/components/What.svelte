@@ -20,7 +20,7 @@
         text-align: center;
         animation: share-anim .2s linear;
         position: relative;
-        z-index: 2000;
+        z-index: 3100;
     }
     .submit-txt{
         margin: 1rem 0 1.5rem;

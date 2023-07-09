@@ -30,8 +30,6 @@
         background-color: rgba(0,0,0,.6);
         text-align: center;
         animation: share-anim .2s linear;
-        position: relative;
-        z-index: 2000;
     }
     .likes-txt {
         cursor: pointer;
@@ -41,9 +39,19 @@
         width: 250px;
         text-align: left;
         background-color: rgba(0,0,0,.6);
+        animation: share-anim .2s linear;
         position: absolute;
         bottom: 2.5rem;
         right: 0;
+        z-index: 3100;
+    }
+    @keyframes share-anim{
+        from{
+            transform: translateX(20px);
+        }
+        to{
+            transform: translateX(0px);
+        }
     }
     .cross{
         position: absolute;

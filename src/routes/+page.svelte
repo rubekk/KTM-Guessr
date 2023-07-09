@@ -220,7 +220,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2500;
+        z-index: 4000;
     }
     iframe{
         position: absolute;
