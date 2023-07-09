@@ -90,7 +90,7 @@
     .header{
         padding: .5rem 2rem;
         height: 80px;
-        background-color: rgb(88, 88, 88);
+        background-color: rgb(8, 95, 95);
         color: #fff;
         border-bottom: 2px solid #fff;
         display: flex;
@@ -170,7 +170,7 @@
     }
     .user-likes{
         position: absolute;
-        bottom: .75rem;
+        bottom: 1rem;
         right: 6rem;
     }
     .like{

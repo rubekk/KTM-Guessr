@@ -5,10 +5,9 @@
     $: openLikes, likesData=localStorage.getItem("liked")?localStorage.getItem("liked").split(","):[];
 </script>
 
-<div class={!openLikes?"container":"container no-padding"}>
-    {#if !openLikes}
-        <div on:click={()=>openLikes=true} class="likes-txt">Likes</div>
-    {:else}
+<div class="container">
+    <div on:click={()=>openLikes=!openLikes} class="likes-txt">Likes</div>
+    {#if openLikes}
         <div class="like-container">
             <div class="cross">
                 <i on:click={()=>openLikes=false} class="fa-solid fa-times"></i>
@@ -34,9 +33,6 @@
         position: relative;
         z-index: 2000;
     }
-    .no-padding{
-        padding: 0;
-    }
     .likes-txt {
         cursor: pointer;
     }
@@ -46,7 +42,7 @@
         text-align: left;
         background-color: rgba(0,0,0,.6);
         position: absolute;
-        bottom: 1rem;
+        bottom: 2.5rem;
         right: 0;
     }
     .cross{
