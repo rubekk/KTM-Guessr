@@ -4,6 +4,7 @@
     import OnLoad from "../components/OnLoad.svelte";
     import Map from "./../components/Map.svelte";
     import Audio from "../components/Audio.svelte";
+    import UserLikes from "../components/UserLikes.svelte";
     import Like from "../components/Like.svelte";
     import What from "../components/What.svelte";
     import { canShowShare, canShowWhat, totalScore, totalGuessed, currIframeURL } from "$lib/stores/store";
@@ -63,6 +64,9 @@
         </div>
         <div class="map">
             <Map />
+        </div>
+        <div class="user-likes">
+            <UserLikes />
         </div>
         <div class="like">
             <Like />
@@ -162,6 +166,12 @@
         position: absolute;
         bottom: 1rem;
         left: 1rem;
+        z-index: 3000;
+    }
+    .user-likes{
+        position: absolute;
+        bottom: .75rem;
+        right: 6rem;
     }
     .like{
         position: absolute;
