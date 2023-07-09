@@ -114,8 +114,8 @@ export const data=writable([
         iframeURL: "https://www.google.com/maps/embed?pb=!4v1682141209868!6m8!1m7!1sCAoSLEFGMVFpcE5pc1BmLXBEalVIX3gyQWw5TTl6RERHSWxqbmNyQm8xYjRJdFNz!2m2!1d27.5711026!2d85.4055504!3f191.7795606787038!4f-21.099066628764362!5f0.7820865974627469"
     },
     {
-        name: "Gwarko",
-        coords: [27.6576672,85.3271027],
+        name: "Gwarko", //27.666650, 85.331877
+        coords: [27.666650, 85.331877],
         iframeURL: "https://www.google.com/maps/embed?pb=!4v1682141325578!6m8!1m7!1sCAoSLEFGMVFpcFAwLXJiU2JNdWE0VEZyb2xadWNxTG1zUEY3U1dCUk1TenFQZEUt!2m2!1d27.6576672!2d85.3271027!3f233.32432399399073!4f-7.184714875872686!5f0.7820865974627469"
     },
     {
