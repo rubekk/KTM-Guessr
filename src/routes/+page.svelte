@@ -7,13 +7,15 @@
     import UserLikes from "../components/UserLikes.svelte";
     import Like from "../components/Like.svelte";
     import What from "../components/What.svelte";
-    import { canShowShare, canShowWhat, totalScore, totalGuessed, currIframeURL } from "$lib/stores/store";
+    import GameComplete from "../components/GameComplete.svelte";
+    import { canShowShare, canShowWhat, totalScore, totalGuessed, currIframeURL, isGameCompleted } from "$lib/stores/store";
 
     let showShare,
         showWhat,
         iframeURL,
         totScore,
         totGuessed,
+        gameCompleted=false,
         loaded=false;
 
     canShowShare.subscribe(value => showShare=value);
@@ -21,6 +23,7 @@
     currIframeURL.subscribe(value => iframeURL=value);
     totalScore.subscribe(value => totScore=value);
     totalGuessed.subscribe(value => totGuessed=value);
+    isGameCompleted.subscribe(value => gameCompleted=value);
         
     const setShareToTrue=()=> canShowShare.set(true);
     const setWhat=()=>{
@@ -77,6 +80,11 @@
         {#if showWhat}
             <div class="what-info">
                 <What />
+            </div>
+        {/if}
+        {#if gameCompleted}
+            <div class="game-complete">
+                <GameComplete />
             </div>
         {/if}
     </div>
@@ -200,6 +208,19 @@
     }
     .info i:hover{
         background-color: rgba(0,0,0,.6);
+    }
+    .game-complete{
+        width: 300px;
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: 50%;
+        bottom: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2500;
     }
     iframe{
         position: absolute;

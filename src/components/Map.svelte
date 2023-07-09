@@ -1,7 +1,7 @@
 <script>
     import { onMount, onDestroy } from 'svelte';
     import { browser } from '$app/environment';
-    import { totalScore, totalGuessed, data, currIframeURL, currentPlace } from '$lib/stores/store';
+    import { totalScore, totalGuessed, data, currIframeURL, currentPlace, isGameCompleted } from '$lib/stores/store';
     import { findDistance } from '$lib/utils';
     import getScore from "$lib/getScore.js";
     import markerIcon from "$lib/imgs/marker-icon.png";
@@ -116,7 +116,10 @@
         getPlaceData();
     }
     const getPlaceData=()=>{
-        if(placeData.length==shownPlaces.length) return;
+        if(placeData.length==shownPlaces.length) {
+            isGameCompleted.set(true);
+            return;
+        }
 
         let indPlace=placeData[Math.floor(Math.random()*placeData.length)];
 

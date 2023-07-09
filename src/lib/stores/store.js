@@ -4,6 +4,8 @@ export let canShowShare=writable(false);
 
 export let canShowWhat=writable(false);
 
+export let isGameCompleted=writable(false);
+
 export let totalScore=writable(0);
 
 export let totalGuessed=writable(0);
