@@ -40,6 +40,7 @@
 
         getCurrId();
     }
+    checkData();
 
     const handleLike=()=>{
         liked=!liked;
