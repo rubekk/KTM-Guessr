@@ -66,6 +66,7 @@
             pname: currPlace.name,
             likes: 0
         })
+        checkData();
     }
 
     const incrementLike=async ()=>{
